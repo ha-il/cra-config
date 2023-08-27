@@ -1,26 +1,40 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
+    "target": "es5", // 컴파일 결과물에 적용시킬 자바스크립트 스펙.
+    "lib": ["dom", "dom.iterable", "esnext"], // 브라우저 DOM API, 자바스크립트 내장 API의 타입 선언 파일.
+    "allowJs": true, // 자바스크립트 파일을 함께 사용하는 것을 허용,
+    "skipLibCheck": true, // 타입 정의 파일의 타입 체크를 스킵.
+    "esModuleInterop": true, // 컴파일러의 동작을 변경하여 타입스크립트가 CommonJS/AMD/UMD를 ES6 모듈과 유사하게 취급해서 발생하는 문제를 해결.
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "strict": true, // 엄격한 체크 여부.
+
+    /* strict 속성이 true라면 아래의 속성 목록도 true가 된다.
+    "alwaysStrict": true // use strict 모드로 파일을 컴파일하고, 컴파일한 파일 위에 'use strict' 코드를 추가.
+    "noImplicitAny": true // 타입 정의가 안 된 코드에서 경고를 표시하는 옵션. any 타입으로라도 명시해야 함.
+    "noImplicitThis": true // this 타입이 암묵적으로 any 타입을 가리키면 에러를 표시.
+    "strictBindCallApply": true // 자바스크립트의 call(), bind(), apply() API를 사용할 때 인자 타입이 적절한지 검사하는 옵션.
+    "strictFunctionTypes": true // 함수의 파라미터 타입을 엄격하게 검사하는 옵션.
+    "strictNullChecks": true // null과 undefined 값이 모두 타입으로 취급되도록 타입 검사 수준을 높이는 옵션.
+    "strictPropertyInitialization": true // 클래스 안에서 속성 타입이 정의되고 생성자에서 초기화까지 되어 있는지 검사하는 옵션.
+    "useUnknownInCatchVariables": true // try catch 구문에서 catch err 파라미터 타입을 unknown으로 변환해주는 옵션.
+     */
+
+    "forceConsistentCasingInFileNames": true, // 파일 이름에 일관된 대소문자 사용 강제.
+    "noFallthroughCasesInSwitch": true, // 스위치 문 안에 비어 있지 않은 모든 케이스에 break, return 또는 throw가 포함되어 있는지 확인
+    "module": "esnext", // 프로그램의 모듈 시스템을 설정. 최신 노드 프로젝트에는 "nodeNext"도 고려 가능.
+    "moduleResolution": "node", // 모듈 해석(각 import가 어떤 모듈을 가리키는지 해석하는 과정) 전략 설정.
+    "resolveJsonModule": true, // JSON을 가져오고 해당 JSON 파일의 유형의 유효성 검사 가능
+    "isolatedModules": true, // 트랜스파일러(ex.바벨)을 사용할 때, 단일 파일 트랜스파일 프로세스에서 올바르게 해석할 수 없는 특정 코드를 작성하는 경우 TypeScript에서 경고하도록 지시.
+    "noEmit": true, // 컴파일러 출력 파일(ex.자바스크립트 파일)을 내보내지 않음.
+    "jsx": "react-jsx", // 컴파일 결과물에 적용시킬 jsx 변환 형식.
+
+    // 여기 밑에는 개인적으로 추가한 것
+    "sourceMap": true, // 컴파일된 자바스크립트 파일의 에러를 타입스크립트 파일에 표시해줌. 디버깅에 도움.
+    "baseUrl": "src", //모듈 해석 기준 경로 지정. 다른 폴더의 파일 임포트 시 baseUrl 기준으로 경로 설정. 경로 간결해짐.
+    "paths": {
+      "api": ["api/*"] // paths 속성의 경로는 baseUrl로 시작하게 됨. 경로 간결해짐.
+    },
+    "noUnusedParameters": true // 함수에서 사용하지 않는 매개변수에 대한 오류 표시.
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src", "myFn.ts"] // 타입스크립트 컴파일 대상 파일의 패턴을 지정하는 속성
 }
