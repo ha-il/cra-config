@@ -1,19 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import LocalStorage from 'storages/LocalStorage';
+import HttpClient from 'httpClient/httpClient';
+import AuthServiceImplement from 'services/AuthSerivce';
+import AuthProvider from 'contexts/AuthContext';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+const BASE_URL = 'http://localhost:8000/';
+const storage = new LocalStorage();
+const httpClient = new HttpClient(BASE_URL, storage);
+const authService = new AuthServiceImplement(httpClient, storage);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(
+  <AuthProvider authService={authService}>
+    <App />
+  </AuthProvider>,
+);
