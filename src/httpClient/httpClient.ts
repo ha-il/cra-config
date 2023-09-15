@@ -4,14 +4,6 @@
 
 import LocalStorage from 'storages/LocalStorage';
 
-type Options = {
-  headers?: {
-    [key: string]: string;
-  };
-  method?: string;
-  body?: string;
-};
-
 class HttpClient {
   private baseURL;
 
@@ -22,16 +14,8 @@ class HttpClient {
     this.storage = storage;
   }
 
-  async fetch(endPoint: string, options: Options) {
-    const response = await window.fetch(this.baseURL + endPoint, {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.storage.get()}`,
-        ...options.headers,
-      },
-    });
-
+  async fetch(endPoint: string) {
+    const response = await window.fetch(this.baseURL + endPoint);
     return response;
   }
 }

@@ -1,17 +1,10 @@
 import React from 'react';
 
-import Auth from 'components/Auth';
 import './App.css';
-import Todos from 'components/Todos';
+import Cats from 'components/Cats';
 
 function App() {
-  return (
-    <>
-      <Auth />
-      <br />
-      <Todos />
-    </>
-  );
+  return <Cats />;
 }
 
 export default App;
