@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import './App.css';
-import Cats from 'components/Cats';
 
 function App() {
-  return <Cats />;
+  const handleClickButton: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.currentTarget.disabled = true;
+  };
+  return (
+    <>
+      <h1>Hello World</h1>
+      <button type="button" onClick={handleClickButton}>
+        Click me!
+      </button>
+    </>
+  );
 }
 
 export default App;
