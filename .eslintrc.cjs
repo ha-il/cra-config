@@ -21,7 +21,10 @@ module.exports = {
   // 코드베이스 내에서 typescript-eslint 규칙을 사용할 수 있게 설정
   root: true,
   // ESLint가 이 루트 디렉터리 밖에서 구성 파일을 검색하면 안 된다는 것을 명시적으로 표시
-  rules: {},
+  rules: {
+    'testing-library/no-debugging-utils': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+  },
 };
 
 /*
